@@ -1,7 +1,28 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import "../App.css"; // Import the CSS file for styling
 import Footer from './Footer';
+import About from "./About";
+import ProjSection from "./projects/ProjSection";
+
 export default function Home() {
+    const [color, setColor] = useState({
+        backgroundColor: "black",
+    });
+
+    function changeColor() {
+        setColor((prevColor) => {
+            if (prevColor.backgroundColor === "black") {
+                return {
+                    backgroundImage: "linear-gradient(to bottom, rgb(218, 212, 212), #e1dbdb)",
+                };
+            } else {
+                return {
+                    backgroundColor: "black",
+                };
+            }
+        });
+    }      
+        
     useEffect(() => {
         const observer = new IntersectionObserver(
           (entries) => {
@@ -28,7 +49,7 @@ export default function Home() {
     return (
         <div className="app">
           {/* Hero Section */}
-          <section className="hero">
+          <section className="hero" style={color}>
             <div className="hero-content">
               <img
                 src="../avatar.jpg" // Replace with your avatar image URL
@@ -37,21 +58,16 @@ export default function Home() {
               />
               <h1>Hi, I'm Umar Sabir</h1>
               <p>Full Stack Developer | Tech Enthusiast | Problem Solver</p>
-              <button className="cta-button">View My Work</button>
+              <button className="cta-button" onClick={changeColor}>Change color Theme</button>
             </div>
           </section>
   
-          {/* About Section */}
-          <section className="about fade-in">
-            <h2>About Me</h2>
-            <p>
-              I'm a passionate developer with expertise in building modern web
-              applications. I love working with Ruby on Rails, React, Node.js, and other cutting-edge
-              technologies to create seamless user experiences.
-            </p>
-          </section>
-  
-          {/* Projects Section */}
+
+
+        <ProjSection />
+
+
+          {/* Projects Section */} 
           <section className="projects fade-in">
             <h2>My Projects</h2>
             <div className="project-grid">
@@ -79,6 +95,8 @@ export default function Home() {
             </div>
           </section>
   
+        <About />
+
           {/* Contact Section */}
           <section className="contact fade-in">
             <h2>Get In Touch</h2>

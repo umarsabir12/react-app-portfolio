@@ -60,6 +60,11 @@ const ContactPage = () => {
     message: ""
   });
 
+
+console.log(" i am re renderedßß")
+
+
+
   const handleChange = (e) => {
     const { value } = e.target;
     setFormData({
